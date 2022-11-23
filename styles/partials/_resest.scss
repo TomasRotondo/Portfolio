@@ -1,0 +1,31 @@
+@use "mixins";
+
+* {
+    margin: 0;
+    padding: 0;
+
+}
+
+* {
+
+    scrollbar-color: $color-secundario $color-principal;
+}
+
+*::-webkit-scrollbar {
+
+    width: 0;
+}
+
+body {
+
+    overflow-x: hidden;
+}
+
+html {
+
+    scrollbar-width: thin;
+    background-color: #997c7723;
+    scroll-behavior: smooth;
+    overflow-x: hidden ;
+
+}

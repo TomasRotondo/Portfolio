@@ -1,0 +1,123 @@
+@use "mixins";
+
+.nav {
+
+    font-family: $fuente-principal;
+    font-weight: 100;
+    background: $color-principal;
+    height: 8vh;
+    color: #fff;
+    position: fixed;
+    width: 100%;
+    z-index: 250;
+    border: #997c7702;
+    border-width: 0.5px;
+    border-style: solid;
+
+    &__contenedor {
+
+        height: 100%;
+        width: 90%;
+        margin: 0 auto;
+        align-items: center;
+
+        @include mixins.flex-between;
+    }
+
+    .div {
+
+        .nav__logo {
+
+            font-size: clamp(1.4rem, 2.8vw, 1.8rem);
+            font-weight: 900;
+        }
+    }
+
+    .nav__label {
+
+        display: none;
+    }
+
+    .nav__input {
+
+        display: none;
+    }
+
+    .nav__menu {
+
+        display: grid;
+        grid-auto-flow: column;
+        gap: 3em;
+
+        .nav__item {
+
+            font-size: clamp(1rem, 1.6vw, 1.15rem);
+            color: #fff;
+            text-decoration: none;
+            --clippy: polygon(0 0, 0 0, 0 100%, 0 100%);
+        }
+
+        ::after {
+
+            content: "";
+            display: block;
+            background: #fff;
+            width: 100%;
+            margin-top: 3px;
+            height: 3px;
+            clip-path: var(--clippy);
+            transition: clip-path .5s;
+        }
+
+        :hover {
+
+            --clippy: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        }
+    }
+}
+
+@media screen and (min-width:0px) and (max-width: 1280px) {
+
+    .nav {
+
+        height: 5.5vh;
+        margin-bottom: 0px;
+    }
+}
+
+@media (max-width: 700px) {
+
+    .nav {
+
+        .nav__contenedor {
+
+            .nav__label {
+
+                display: block;
+                cursor: pointer;
+            }
+
+            .nav__menu {
+
+                position: fixed;
+                top: 45px;
+                bottom: 0;
+                background: #997c77;
+                width: 100%;
+                left: 0;
+                display: flex;
+                justify-content: space-evenly;
+                flex-direction: column;
+                align-items: center;
+                clip-path: circle(0 at center);
+                transition: clip-path 1s ease-in-out;
+                z-index: 100;
+            }
+
+            .nav__input:checked+.nav__menu {
+
+                clip-path: circle(100% at center);
+            }
+        }
+    }
+}
